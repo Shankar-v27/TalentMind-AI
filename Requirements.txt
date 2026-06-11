@@ -1,0 +1,16 @@
+pandas
+numpy
+jsonlines
+python-docx
+sentence-transformers
+faiss-cpu
+scikit-learn
+xgboost
+fastapi
+uvicorn
+gradio
+python-dotenv
+anthropic
+openai
+tqdm
+networkx
