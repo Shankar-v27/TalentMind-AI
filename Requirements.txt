@@ -8,8 +8,10 @@ scikit-learn
 xgboost
 fastapi
 uvicorn
+python-multipart
 gradio
 python-dotenv
+groq
 anthropic
 openai
 tqdm

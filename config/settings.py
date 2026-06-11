@@ -1,6 +1,8 @@
 # config/settings.py
 
 import os
+from pathlib import Path
+
 from dotenv import load_dotenv
 
 
@@ -10,26 +12,19 @@ load_dotenv()
 
 class Settings:
 
+    PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
     # ==============================
     # Data Paths
     # ==============================
 
-    DATA_DIR = "data"
+    DATA_DIR = str(PROJECT_ROOT / "data")
 
-    CANDIDATE_FILE = os.path.join(
-        DATA_DIR,
-        "candidates.jsonl"
-    )
+    CANDIDATE_FILE = str(Path(DATA_DIR) / "candidates.jsonl")
 
-    JOB_DESCRIPTION_FILE = os.path.join(
-        DATA_DIR,
-        "job_description.docx"
-    )
+    JOB_DESCRIPTION_FILE = str(Path(DATA_DIR) / "job_description.docx")
 
-    OUTPUT_FILE = os.path.join(
-        DATA_DIR,
-        "submission.csv"
-    )
+    OUTPUT_FILE = str(Path(DATA_DIR) / "submission.csv")
 
 
     # ==============================
@@ -54,22 +49,13 @@ class Settings:
     # Cache Configuration
     # ==============================
 
-    CACHE_DIR = "cache"
+    CACHE_DIR = str(PROJECT_ROOT / "cache")
 
-    EMBEDDING_CACHE_FILE = os.path.join(
-        CACHE_DIR,
-        "candidate_embeddings.npy"
-    )
+    EMBEDDING_CACHE_FILE = str(Path(CACHE_DIR) / "candidate_embeddings.npy")
 
-    FAISS_INDEX_FILE = os.path.join(
-        CACHE_DIR,
-        "faiss.index"
-    )
+    FAISS_INDEX_FILE = str(Path(CACHE_DIR) / "faiss.index")
 
-    CANDIDATE_MAPPING_FILE = os.path.join(
-        CACHE_DIR,
-        "candidate_mapping.pkl"
-    )
+    CANDIDATE_MAPPING_FILE = str(Path(CACHE_DIR) / "candidate_mapping.pkl")
 
 
     # ==============================

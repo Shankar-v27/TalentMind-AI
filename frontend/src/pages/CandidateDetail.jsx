@@ -1,13 +1,15 @@
 import { useParams } from "react-router-dom";
-import { Download, Mail, MapPin, ShieldCheck } from "lucide-react";
+import { Download, Hash, Mail, MapPin, ShieldCheck } from "lucide-react";
 import { Card } from "../components/ui/Card";
 import { Button } from "../components/ui/Button";
 import { Badge } from "../components/ui/Badge";
 import { ProgressRing } from "../components/ui/ProgressRing";
-import { candidates, scoreBreakdown, timeline } from "../data/mockData";
+import { scoreBreakdown, timeline } from "../data/mockData";
+import { useTalentMindStore } from "../state/useTalentMindStore";
 
 export function CandidateDetail() {
   const { id } = useParams();
+  const candidates = useTalentMindStore((state) => state.candidates);
   const candidate = candidates.find((item) => item.id === id) || candidates[0];
 
   return (
@@ -20,6 +22,7 @@ export function CandidateDetail() {
             <h2 className="mt-3 text-3xl font-extrabold">{candidate.name}</h2>
             <p className="mt-1 font-semibold text-muted-foreground">{candidate.role} · {candidate.company}</p>
             <div className="mt-3 flex flex-wrap gap-3 text-sm text-muted-foreground">
+              <span className="inline-flex items-center gap-1"><Hash size={15} /> Candidate ID {candidate.id}</span>
               <span className="inline-flex items-center gap-1"><MapPin size={15} /> {candidate.location}</span>
               <span className="inline-flex items-center gap-1"><ShieldCheck size={15} /> Trust {candidate.trust}</span>
               <span className="inline-flex items-center gap-1"><Mail size={15} /> Response ready</span>

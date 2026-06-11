@@ -13,6 +13,7 @@ class JDAnalyzer:
 
     def _empty_result(self):
         return {
+            "role": "",
             "required_skills": [],
             "preferred_skills": [],
             "seniority": "",
@@ -90,6 +91,7 @@ Analyze the job description and return ONLY a valid JSON.
 Return this format:
 
 {{
+    "role": "",
     "required_skills": [],
     "preferred_skills": [],
     "seniority": "",
