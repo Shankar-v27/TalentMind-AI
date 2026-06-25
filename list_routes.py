@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import sys
-sys.path.insert(0, 'V:\\Project\\TalentMind AI\\TalentMind-AI')
+import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from api_server import app
 

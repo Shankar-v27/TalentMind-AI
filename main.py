@@ -203,6 +203,7 @@ def main():
     top_candidates = [
         candidates[idx]
         for idx in ids
+        if idx >= 0
     ]
 
     print(

@@ -1,1 +1,97 @@
-IyBUYWxlbnRNaW5kLUFJIPCfjIkKCj4gQUktcG93ZXJlZCBjYW5kaWRhdGUgcmFua2luZyBzeXN0ZW0gdGhhdCB1bmRlcnN0YW5kcyB3aG8gZml0cyBhIHJvbGUg4oCUIE5vdCBqdXN0IHdobyBtYXRjaGVzIGtleXdvcmRzLgoKIVtQeXRob24gMy4xMV0oaHR0cHM6Ly9pbWcuc2hpZWxkcy5pby9iYWRnZS9weXRob24tMy4xMS1ibHVlKQoKLS0tCgojIyDwn5OMIE92ZXJ2aWV3CgpSZWNydWl0ZXJzIGdvIHRocm91Z2ggaHVuZHJlZHMgb2YgcHJvZmlsZXMgYW5kIHN0aWxsIG9mdGVuIG1pc3MgdGhlIHJpZ2h0IHBlcnNvbi4gTm90IGJlY2F1c2UgdGhlIHRhbGVudCBpc24ndCB0aGVyZSDigJQgYnV0IGJlY2F1c2Uga2V5d29yZCBmaWx0ZXJzIGNhbid0IHNlZSB3aGF0IGFjdHVhbGx5IG1hdHRlcnMuCgoqKlRhbGVudE1pbmQtQUkqKiByYW5rcyBjYW5kaWRhdGVzIHRoZSB3YXkgYSBncmVhdCByZWNydWl0ZXIgd291bGQg4oCUIGJ5IGFjdHVhbGx5IHVuZGVyc3RhbmRpbmcgd2hvIGZpdHMgdGhlIHJvbGUsIHVzaW5nIHNlbWFudGljIHVuZGVyc3RhbmRpbmcsIG11bHRpLWRpbWVuc2lvbmFsIHNjb3JpbmcsIGFuZCBiZWhhdmlvcmFsIHNpZ25hbHMuCgpCdWlsdCBmb3IgdGhlICoqSW5kaWEgUnVucyBEYXRhICYgQUkgQ2hhbGxlbmdlKiogYnkgUmVkcm9iLgoKLS0tCgojIyDwn5OJIEFyY2hpdGVjdHVyZQoKYGBgCkpvYiBEZXNjcmlwdGlvbiAgICAgICAgICAgQ2FuZGlkYXRlIFBvb2wgKDEwMEspCiAgICAgICAgXCAgICAgICAgICAgICAgICAgICAgICAgICAvCiAgICAgW1N0YWdlIDFdIERlZXAgU2VtYW50aWMgVW5kZXJzdGFuZGluZwogICAgICBKRCBQYXJzZXIgfCBDYW5kaWRhdGUgRW5jb2RlciB8IFNpZ25hbCBFeHRyYWN0b3IKICAgICAgICAgICAgICAgICAgICAgICAgfAogICAgW1N0YWdlIDJdIE11bHRpLURpbWVuc2lvbmFsIFNjb3JpbmcKICAgICBTa2lsbHMgfCBDYXJlZXIgQXJjIHwgRXhwZXJpZW5jZSB8IEVkdWNhdGlvbgogICAgIEludGVudCB8IFJlbGlhYmlsaXR5IHwgQWN0aXZpdHkgfCBMb2dpc3RpY3MKICAgICAgICAgICAgICAgICAgICAgICAgfAogICAgW1N0YWdlIDNdIFdlaWdodGVkIEZ1c2lvbiBFbmdpbmUKICAgICAgICAgICAgICAgICAgICAgICAgfAogICAgW1N0YWdlIDRdIExMTSBSZWFzb25pbmcgTGF5ZXIgKEFudGhyb3BpYyBDbGF1ZGUpCiAgICAgICAgICAgICAgICAgICAgICAgIHwKICAgICAgICAgICAgICBzdWJtaXNzaW9uLmNzdiArIEdyYWRpbyBEZW1vCmBgYAoKLS0tCgojIyDwn5OZIFN0YWdlcwoKfCBTdGFnZSB8IE5hbWUgfCBEZXNjcmlwdGlvbiB8CnwtLS18LS0tfC0tLXwKfCAxIHwgRGVlcCBVbmRlcnN0YW5kaW5nIHwgU2VtYW50aWMgSkQgcGFyc2luZyArIGNhbmRpZGF0ZSBlbWJlZGRpbmdzIHZpYSBgc2VudGVuY2UtdHJhbnNmb3JtZXJzYCArIEZBSVNTIEFOTiB8CnwgMiB8IE11bHRpLURpbSBTY29yaW5nIHwgOCBkaW1lbnNpb25zOiBTa2lsbHMsIENhcmVlciBBcmMsIEV4cGVyaWVuY2UsIEVkdWNhdGlvbiwgSW50ZW50LCBSZWxpYWJpbGl0eSwgQWN0aXZpdHksIExvZ2lzdGljcyB8CnwgMyB
+# TalentMind-AI 🌉
+
+> AI-powered candidate ranking system that understands who fits a role — Not just who matches keywords.
+
+![Python 3.11](https://img.shields.io/badge/python-3.11-blue)
+
+---
+
+## 📌 Overview
+
+Recruiters go through hundreds of profiles and still often miss the right person. Not because the talent isn't there — but because keyword filters can't see what actually matters.
+
+**TalentMind-AI** ranks candidates the way a great recruiter would — by actually understanding who fits the role, using semantic understanding, multi-dimensional scoring, and behavioral signals.
+
+Built for the **India Runs Data & AI Challenge** by Redrob.
+
+---
+
+## 📉 Architecture
+
+```
+Job Description           Candidate Pool (100K)
+        \                         /
+     [Stage 1] Deep Semantic Understanding
+      JD Parser | Candidate Encoder | Signal Extractor
+                        |
+    [Stage 2] Multi-Dimensional Scoring
+     Skills | Career Arc | Experience | Education
+     Intent | Reliability | Activity | Logistics
+                        |
+    [Stage 3] Weighted Fusion Engine
+                        |
+    [Stage 4] LLM Reasoning Layer (Groq / Claude)
+                        |
+              submission.csv + React Dashboard
+```
+
+---
+
+## 📙 Stages
+
+| Stage | Name | Description |
+|---|---|---|
+| 1 | Deep Understanding | Semantic JD parsing + candidate embeddings via `sentence-transformers` + FAISS ANN |
+| 2 | Multi-Dim Scoring | 8 dimensions: Skills, Career Arc, Experience, Education, Intent, Reliability, Activity, Logistics |
+| 3 | Weighted Fusion Engine | Custom scoring logic with reliability and trust multipliers for anti-honeypot checks |
+| 4 | LLM Reasoning Layer | Natural language explanations (reasoning) generated via Groq/Claude for final candidates |
+| 5 | Output Generation | Outputs final candidate ranks, scores, and explanation parameters to `submission.csv` |
+
+---
+
+## 🚀 Setup & Execution
+
+### Prerequisites
+- Python 3.11+
+- Node.js (for frontend)
+
+### Installation
+1. Clone the repository and navigate to the folder:
+   ```bash
+   cd TalentMind-AI
+   ```
+2. Install Python dependencies:
+   ```bash
+   pip install -r Requirements.txt
+   ```
+3. Set your environment variables in a `.env` file:
+   ```env
+   GROQ_API_KEY=your_groq_api_key_here
+   ```
+
+### Running the Backend
+To start the FastAPI server:
+```bash
+python api_server.py
+```
+By default, the server runs on `http://127.0.0.1:8001`.
+
+### Running the Frontend
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+2. Install Node packages:
+   ```bash
+   npm install
+   ```
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+### Pre-building Candidate Embeddings Cache
+To generate candidate embeddings and FAISS index cache before running the app:
+```bash
+python build_cache.py
+```

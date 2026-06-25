@@ -1,6 +1,6 @@
 import logging
 from io import BytesIO
-
+# pyrefly: ignore [missing-import]
 from docx import Document
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile, Body
 from fastapi.middleware.cors import CORSMiddleware
@@ -201,8 +201,7 @@ async def analyze_job(text: str = Form(""), file: UploadFile | None = File(None)
     global _current_jd_analysis
     
     if not Settings.GROQ_API_KEY:
-        logger.error("GROQ_API_KEY is not set")
-        raise HTTPException(status_code=500, detail="GROQ_API_KEY is not set in the environment.")
+        logger.warning("GROQ_API_KEY is not set. Proceeding in mock offline mode.")
 
     jd_text = text or ""
     logger.info(f"Analyzing JD - text length: {len(text)}, file: {file.filename if file else 'None'}")
@@ -338,3 +337,62 @@ def clear_session():
     _last_ranked_candidates = []
     logger.info("Session cleared")
     return {"success": True, "message": "Session cleared successfully"}
+
+
+@app.post("/api/copilot/chat")
+async def copilot_chat(payload: dict = Body(default={})):
+    """AI Copilot chat assistant helping recruiter with queries."""
+    message = payload.get("message", "")
+    if not message:
+        raise HTTPException(status_code=400, detail="Message is required.")
+
+    global _last_ranked_candidates, _current_jd_analysis
+
+    context = ""
+    if _current_jd_analysis:
+        context += f"Job Description Requirements: {_current_jd_analysis.get('jd_data')}\n"
+    if _last_ranked_candidates:
+        # Extract basic info from top candidates for context
+        candidate_summary = [
+            {
+                "name": c.get("name"),
+                "score": c.get("score"),
+                "skills": c.get("skills", []),
+                "experience": c.get("experience", ""),
+                "location": c.get("location", "")
+            }
+            for c in _last_ranked_candidates[:10]
+        ]
+        context += f"Top Ranked Candidates in Session: {candidate_summary}\n"
+
+    prompt = f"""
+You are the TalentMind AI Recruiter Copilot, a helpful AI assistant aiding a recruiter.
+
+Context of current recruitment session:
+{context}
+
+Recruiter's query:
+{message}
+
+Answer the recruiter's query professionally, concisely, and contextually based on the candidate details provided (if any). Maximum 100 words.
+"""
+    try:
+        from utils.groq_client import GroqClient
+        llm = GroqClient()
+        response = llm.generate(prompt)
+        
+        # Parse potential JSON response from mock fallback
+        import json
+        answer = response
+        try:
+            parsed = json.loads(response)
+            if isinstance(parsed, list) and len(parsed) > 0 and "reasoning" in parsed[0]:
+                answer = parsed[0]["reasoning"]
+        except Exception:
+            pass
+
+        return {"answer": answer}
+    except Exception as e:
+        logger.error(f"Error in copilot chat: {e}")
+        return {"answer": "I'm having trouble answering right now. Please try again."}
+

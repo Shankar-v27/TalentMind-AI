@@ -69,11 +69,9 @@ scores, ids = index.search(
 
 print("\nTop Candidates\n")
 
-for i in range(10):
-
-    candidate = candidates[
-        ids[i]
-    ]
+valid_ids = [idx for idx in ids if idx >= 0]
+for i in range(min(10, len(valid_ids))):
+    candidate = candidates[valid_ids[i]]
 
     print(
         f"Rank {i+1}"
