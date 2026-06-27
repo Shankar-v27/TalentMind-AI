@@ -1,6 +1,6 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { BarChart3, Bot, BrainCircuit, LayoutDashboard, Moon, Search, Sparkles, Sun, UsersRound } from "lucide-react";
+import { BarChart3, Bot, BrainCircuit, LayoutDashboard, Moon, Search, Sparkles, Sun, UsersRound, Sliders, Network } from "lucide-react";
 import { Button } from "../ui/Button";
 import { useTalentMindStore } from "../../state/useTalentMindStore";
 import { Copilot } from "../copilot/Copilot";
@@ -9,6 +9,9 @@ const nav = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
   { to: "/job-analysis", label: "JD Analysis", icon: BrainCircuit },
   { to: "/rankings", label: "Rankings", icon: UsersRound },
+  { to: "/time-machine", label: "Time Machine", icon: Sparkles },
+  { to: "/optimizer", label: "Optimizer", icon: Sliders },
+  { to: "/recruiter-memory", label: "Recruiter Graph", icon: Network },
   { to: "/analytics", label: "Analytics", icon: BarChart3 },
 ];
 

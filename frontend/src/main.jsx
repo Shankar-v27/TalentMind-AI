@@ -8,6 +8,9 @@ import { JobAnalysis } from "./pages/JobAnalysis";
 import { Rankings } from "./pages/Rankings";
 import { CandidateDetail } from "./pages/CandidateDetail";
 import { Analytics } from "./pages/Analytics";
+import { TimeMachine } from "./pages/TimeMachine";
+import { Optimizer } from "./pages/Optimizer";
+import { RecruiterMemory } from "./pages/RecruiterMemory";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +19,9 @@ const router = createBrowserRouter([
       { path: "/", element: <Dashboard /> },
       { path: "/job-analysis", element: <JobAnalysis /> },
       { path: "/rankings", element: <Rankings /> },
+      { path: "/time-machine", element: <TimeMachine /> },
+      { path: "/optimizer", element: <Optimizer /> },
+      { path: "/recruiter-memory", element: <RecruiterMemory /> },
       { path: "/candidates/:id", element: <CandidateDetail /> },
       { path: "/analytics", element: <Analytics /> },
     ],

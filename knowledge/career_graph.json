@@ -1,0 +1,86 @@
+{
+  "roles": [
+    {
+      "node": "intern",
+      "next_roles": [
+        { "role": "junior_engineer", "probability": 0.85 },
+        { "role": "engineer", "probability": 0.10 }
+      ]
+    },
+    {
+      "node": "junior_engineer",
+      "next_roles": [
+        { "role": "engineer", "probability": 0.80 },
+        { "role": "senior_engineer", "probability": 0.15 }
+      ]
+    },
+    {
+      "node": "engineer",
+      "next_roles": [
+        { "role": "senior_engineer", "probability": 0.75 },
+        { "role": "product_manager", "probability": 0.15 },
+        { "role": "startup_founder", "probability": 0.05 },
+        { "role": "research_scientist", "probability": 0.05 }
+      ]
+    },
+    {
+      "node": "senior_engineer",
+      "next_roles": [
+        { "role": "staff_engineer", "probability": 0.40 },
+        { "role": "tech_lead", "probability": 0.45 },
+        { "role": "architect", "probability": 0.10 },
+        { "role": "startup_founder", "probability": 0.05 }
+      ]
+    },
+    {
+      "node": "staff_engineer",
+      "next_roles": [
+        { "role": "principal_architect", "probability": 0.50 },
+        { "role": "manager", "probability": 0.30 },
+        { "role": "cto", "probability": 0.10 }
+      ]
+    },
+    {
+      "node": "tech_lead",
+      "next_roles": [
+        { "role": "manager", "probability": 0.60 },
+        { "role": "architect", "probability": 0.25 },
+        { "role": "startup_founder", "probability": 0.10 }
+      ]
+    },
+    {
+      "node": "architect",
+      "next_roles": [
+        { "role": "principal_architect", "probability": 0.65 },
+        { "role": "cto", "probability": 0.20 }
+      ]
+    },
+    {
+      "node": "manager",
+      "next_roles": [
+        { "role": "director", "probability": 0.70 },
+        { "role": "vp", "probability": 0.20 }
+      ]
+    },
+    {
+      "node": "director",
+      "next_roles": [
+        { "role": "vp", "probability": 0.75 },
+        { "role": "cto", "probability": 0.15 }
+      ]
+    },
+    {
+      "node": "vp",
+      "next_roles": [
+        { "role": "cto", "probability": 0.80 },
+        { "role": "startup_founder", "probability": 0.10 }
+      ]
+    },
+    {
+      "node": "cto",
+      "next_roles": [
+        { "role": "startup_founder", "probability": 0.30 }
+      ]
+    }
+  ]
+}

@@ -4,7 +4,7 @@ import { ArrowRight, Brain, CheckCircle2, Gauge, Search, Sparkles, UsersRound } 
 import { Card } from "../components/ui/Card";
 import { Button } from "../components/ui/Button";
 import { Badge } from "../components/ui/Badge";
-import { candidates } from "../data/mockData";
+import { useTalentMindStore } from "../state/useTalentMindStore";
 
 const stats = [
   { label: "Candidates analyzed", value: "100,000", icon: UsersRound },
@@ -14,6 +14,7 @@ const stats = [
 ];
 
 export function Dashboard() {
+  const candidates = useTalentMindStore((state) => state.candidates);
   return (
     <div className="space-y-6">
       <section className="grid gap-5 lg:grid-cols-[1.45fr_0.9fr]">

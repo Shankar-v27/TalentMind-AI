@@ -1,0 +1,2 @@
+# Package init
+from intelligence.team_compatibility.compatibility_legacy import TeamCompatibilityEngine
