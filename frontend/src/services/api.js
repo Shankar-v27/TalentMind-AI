@@ -2,7 +2,7 @@ import axios from "axios";
 import { analytics, candidates } from "../data/mockData";
 
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8001/api",
+  baseURL: import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000/api",
   timeout: 120000,
 });
 

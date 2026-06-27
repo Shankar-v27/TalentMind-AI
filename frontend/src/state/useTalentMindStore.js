@@ -22,6 +22,13 @@ export const useTalentMindStore = create((set) => ({
       shortlisted: new Set(candidates.filter((candidate) => candidate.shortlisted).map((candidate) => candidate.id)),
       comparison: [],
     }),
+  // Alias used by Rankings page after re-ranking
+  setRankedCandidates: (ranked) =>
+    set({
+      candidates: ranked,
+      shortlisted: new Set(),
+      comparison: [],
+    }),
 
   // Ranking state
   isRanking: false,
