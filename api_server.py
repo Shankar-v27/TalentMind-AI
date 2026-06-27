@@ -2,6 +2,7 @@ import logging
 from io import BytesIO
 # pyrefly: ignore [missing-import]
 from docx import Document
+from pypdf import PdfReader
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile, Body
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -116,6 +117,18 @@ async def _read_docx(upload: UploadFile):
     document = Document(BytesIO(contents))
     paragraphs = [para.text.strip() for para in document.paragraphs if para.text.strip()]
     return "\n".join(paragraphs)
+
+
+async def _read_pdf(upload: UploadFile) -> str:
+    """Extract plain text from an uploaded PDF file using pypdf."""
+    contents = await upload.read()
+    reader = PdfReader(BytesIO(contents))
+    pages_text = []
+    for page in reader.pages:
+        text = page.extract_text()
+        if text:
+            pages_text.append(text.strip())
+    return "\n".join(pages_text)
 
 
 def _to_frontend_analysis(jd_data):
@@ -318,16 +331,25 @@ async def analyze_job(text: str = Form(""), file: UploadFile | None = File(None)
     logger.info(f"Analyzing JD - text length: {len(text)}, file: {file.filename if file else 'None'}")
 
     try:
-        # Extract text from uploaded .docx file if provided
+        # Extract text from uploaded .docx or .pdf file if provided
         if file is not None and file.filename:
-            if not file.filename.lower().endswith(".docx"):
-                logger.warning(f"Invalid file format: {file.filename}")
-                raise HTTPException(status_code=400, detail="Please upload a .docx job description.")
-            
-            logger.info(f"Extracting text from {file.filename}...")
-            file_text = await _read_docx(file)
+            fname_lower = file.filename.lower()
+            if fname_lower.endswith(".docx"):
+                logger.info(f"Extracting text from DOCX: {file.filename}")
+                file_text = await _read_docx(file)
+            elif fname_lower.endswith(".pdf"):
+                logger.info(f"Extracting text from PDF: {file.filename}")
+                file_text = await _read_pdf(file)
+                if not file_text.strip():
+                    raise HTTPException(
+                        status_code=400,
+                        detail="Could not extract text from this PDF. It may be a scanned image. Please paste the JD text manually."
+                    )
+            else:
+                logger.warning(f"Unsupported file format: {file.filename}")
+                raise HTTPException(status_code=400, detail="Please upload a .docx or .pdf job description file.")
             jd_text = f"{jd_text}\n{file_text}".strip()
-            logger.info(f"Extracted {len(file_text)} characters from .docx file")
+            logger.info(f"Extracted {len(file_text)} characters from file")
 
         # Clean and validate JD text
         jd_text = clean_text(jd_text)

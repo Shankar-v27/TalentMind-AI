@@ -2,6 +2,7 @@ pandas
 numpy
 jsonlines
 python-docx
+pypdf
 sentence-transformers
 faiss-cpu
 scikit-learn

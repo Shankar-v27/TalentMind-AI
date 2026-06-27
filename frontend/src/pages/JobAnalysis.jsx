@@ -35,7 +35,10 @@ export function JobAnalysis() {
   const descriptionValue = watch("description", "");
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: { "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"] },
+    accept: {
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"],
+      "application/pdf": [".pdf"],
+    },
     maxFiles: 1,
     onDrop: ([accepted]) => accepted && setFile(accepted),
   });
@@ -144,8 +147,16 @@ export function JobAnalysis() {
                     style={{ background: "rgba(16,185,129,0.1)", color: "#6EE7B7" }}>
                     <CheckCircle2 size={18} />
                   </div>
-                  <div className="text-left">
-                    <div className="text-[13px] font-semibold text-white">{file.name}</div>
+                                <div className="text-left">
+                    <div className="flex items-center gap-2">
+                      <div className="text-[13px] font-semibold text-white">{file.name}</div>
+                      <span
+                        className={`pill ${file.name.toLowerCase().endsWith(".pdf") ? "pill-rose" : "pill-blue"}`}
+                        style={{ fontSize: 9, padding: "1px 6px" }}
+                      >
+                        {file.name.toLowerCase().endsWith(".pdf") ? "PDF" : "DOCX"}
+                      </span>
+                    </div>
                     <div className="text-[10px]" style={{ color: "#6EE7B7" }}>Ready to analyze</div>
                   </div>
                   <button
@@ -159,8 +170,8 @@ export function JobAnalysis() {
               ) : (
                 <>
                   <UploadCloud size={28} style={{ color: "rgba(37,99,235,0.7)" }} className="mb-2" />
-                  <div className="text-[13px] font-semibold text-white">
-                    {isDragActive ? "Drop it here…" : "Drop a .docx file"}
+                                    <div className="text-[13px] font-semibold text-white">
+                    {isDragActive ? "Drop it here…" : "Drop a .docx or .pdf file"}
                   </div>
                   <div className="text-[11px] mt-1" style={{ color: "var(--tm-text-muted)" }}>
                     or click to browse
