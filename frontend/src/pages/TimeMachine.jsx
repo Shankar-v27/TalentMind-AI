@@ -14,6 +14,30 @@ import {
   LineChart, Line 
 } from "recharts";
 
+// Local mirror of Python ScenarioEngine.SCENARIO_PRESETS
+const SCENARIO_PRESETS = {
+  high_skill: {
+    label: "Scenario A: High Skill Focus",
+    description: "Prioritizes deep technical skill alignment over all other parameters."
+  },
+  fast_hiring: {
+    label: "Scenario B: Urgent Backfill",
+    description: "Prioritizes fast-onboarding notice periods and immediate availability."
+  },
+  future_potential: {
+    label: "Scenario C: Future Leaders",
+    description: "Optimizes for long-term learning velocity and career acceleration profiles."
+  },
+  leadership_focus: {
+    label: "Scenario D: Leadership Capabilities",
+    description: "Prioritizes strategic management capabilities and organization DNA fit."
+  },
+  low_cost: {
+    label: "Scenario E: Budget Optimization",
+    description: "Prioritizes candidates fitting constrained salary requirements."
+  }
+};
+
 export function TimeMachine() {
   // Requirement state
   const [experience, setExperience] = useState(3);
@@ -297,7 +321,7 @@ export function TimeMachine() {
 
       {/* Scenario Presets Selector */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
-        {Object.keys(tm_scenarios.SCENARIO_PRESETS || {}).map((key) => {
+        {Object.keys(SCENARIO_PRESETS).map((key) => {
           const active = activeScenario === key;
           return (
             <button

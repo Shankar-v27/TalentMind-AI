@@ -65,7 +65,7 @@ class ParetoEngine:
             return []
         if n <= 2:
             for item in frontier:
-                item["crowding_distance"] = float("inf")
+                item["crowding_distance"] = 999999.0
             return frontier
             
         # Initialize distance to 0
@@ -80,8 +80,8 @@ class ParetoEngine:
             )
             
             # Boundary points have infinite distance
-            frontier[frontier_sorted[0][0]]["crowding_distance"] = float("inf")
-            frontier[frontier_sorted[-1][0]]["crowding_distance"] = float("inf")
+            frontier[frontier_sorted[0][0]]["crowding_distance"] = 999999.0
+            frontier[frontier_sorted[-1][0]]["crowding_distance"] = 999999.0
             
             # Normalize step
             min_val = frontier_sorted[0][1].get("objectives", {}).get(obj_key, 0.0)
